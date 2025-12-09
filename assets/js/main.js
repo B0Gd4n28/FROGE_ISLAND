@@ -45,8 +45,15 @@ function closeSidebar() {
     document.body.style.overflow = '';
 }
 
-sidebarClose.addEventListener('click', closeSidebar);
-sidebarOverlay.addEventListener('click', closeSidebar);
+// Close sidebar with X button
+if (sidebarClose) {
+    sidebarClose.addEventListener('click', closeSidebar);
+}
+
+// Close sidebar with overlay
+if (sidebarOverlay) {
+    sidebarOverlay.addEventListener('click', closeSidebar);
+}
 
 // Close sidebar when clicking a link
 sidebarLinks.forEach(link => {
