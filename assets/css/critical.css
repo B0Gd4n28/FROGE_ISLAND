@@ -1,0 +1,22 @@
+/* Critical CSS - Above the Fold */
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--forge-flame:#FF7B09;--forge-coal:#181615;--white:#FFF;--font-heading:'Tektur',sans-serif;--font-body:'Anonymous Pro',monospace}
+html{font-size:16px;-webkit-text-size-adjust:100%}
+body{font-family:var(--font-body);background:var(--forge-coal);color:var(--white);line-height:1.7;overflow-x:hidden}
+.header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(24,22,21,0.95);backdrop-filter:blur(10px);padding:1.5rem 0;border-bottom:1px solid rgba(255,123,9,0.1)}
+.header-content{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto;padding:0 1.5rem}
+.logo-img{height:40px;width:auto}
+.hamburger{display:flex;flex-direction:column;gap:6px;cursor:pointer;z-index:1001}
+.hamburger span{width:30px;height:3px;background:var(--forge-flame);transition:0.3s}
+.hero-section{min-height:100vh;display:flex;align-items:center;justify-content:center;position:relative;background:linear-gradient(135deg,rgba(24,22,21,0.95) 0%,rgba(10,9,9,0.98) 100%);padding-top:80px}
+.hero-content{text-align:center;max-width:900px;padding:8rem 2rem 4rem}
+.hero-title{font-family:var(--font-heading);font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1;margin-bottom:1rem;color:var(--white);letter-spacing:-2px}
+.hero-subtitle{font-size:clamp(1rem,2vw,1.5rem);color:rgba(255,255,255,0.8);margin-bottom:2rem;letter-spacing:8px;text-transform:uppercase}
+.btn{display:inline-block;padding:1.2rem 3rem;background:var(--forge-flame);color:var(--white);font-family:var(--font-body);font-weight:700;font-size:1.1rem;border:none;cursor:pointer;transition:all 0.3s;text-transform:uppercase;letter-spacing:1px}
+.btn-hero{background:var(--forge-flame);box-shadow:0 10px 30px rgba(255,123,9,0.3);margin-top:2rem}
+@media(max-width:768px){
+.hero-content{padding:6rem 1.5rem 3rem}
+.hero-title{font-size:2.5rem}
+.hero-subtitle{font-size:1rem;letter-spacing:4px}
+.btn-hero{width:100%;padding:1rem 2rem}
+}

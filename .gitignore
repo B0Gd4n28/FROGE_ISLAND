@@ -1,0 +1,25 @@
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+
+# PDF files (source documents)
+*.pdf
+
+# Text analysis files
+*_analysis.txt
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.log
+
+# Source images not used
+freepik__adjust__37826.webp
