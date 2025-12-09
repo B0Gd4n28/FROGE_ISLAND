@@ -78,6 +78,33 @@ body {
     position: relative;
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--forge-coal);
+    border-left: 1px solid rgba(255, 123, 9, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--forge-flame) 0%, #ff9033 100%);
+    border-radius: 6px;
+    border: 2px solid var(--forge-coal);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #ff9033 0%, var(--forge-flame) 100%);
+    box-shadow: 0 0 10px rgba(255, 123, 9, 0.5);
+}
+
+/* Firefox Scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--forge-flame) var(--forge-coal);
+}
+
 img {
     max-width: 100%;
     display: block;
@@ -3131,11 +3158,13 @@ p {
     }
     
     .benefit-card-sticky {
-        height: 70vh;
-        max-height: 600px;
-        top: 80px;
+        position: relative;
+        top: 0;
+        height: auto;
+        min-height: 500px;
+        max-height: none;
         border-radius: 24px;
-        margin-bottom: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
     }
     
     .benefit-card-sticky:last-child {
@@ -3716,6 +3745,67 @@ p {
     .ceo-image-frame {
         max-width: 100%;
         aspect-ratio: 3 / 4;
+    }
+}
+
+/* ============================================
+   BACK TO TOP BUTTON
+   ============================================ */
+
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--forge-flame) 0%, #ff9033 100%);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 9998;
+    box-shadow: 0 4px 20px rgba(255, 123, 9, 0.4), 0 0 40px rgba(255, 123, 9, 0.2);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    background: linear-gradient(135deg, #ff9033 0%, var(--forge-flame) 100%);
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(255, 123, 9, 0.6), 0 0 60px rgba(255, 123, 9, 0.4);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.back-to-top:active {
+    transform: translateY(-2px);
+}
+
+.back-to-top svg {
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+@media (max-width: 768px) {
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .back-to-top svg {
+        width: 20px;
+        height: 20px;
     }
 }
 

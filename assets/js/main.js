@@ -18,47 +18,49 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('resize', function() {
         AOS.refresh();
     });
-});
+    
+    // ============================================
+    // HAMBURGER MENU & SIDEBAR NAVIGATION
+    // ============================================
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const sidebarNav = document.getElementById('sidebarNav');
+    const sidebarClose = document.getElementById('sidebarClose');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
 
-// ============================================
-// HAMBURGER MENU & SIDEBAR NAVIGATION
-// ============================================
-const hamburgerBtn = document.getElementById('hamburgerBtn');
-const sidebarNav = document.getElementById('sidebarNav');
-const sidebarClose = document.getElementById('sidebarClose');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
-const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    // Open sidebar
+    if (hamburgerBtn) {
+        hamburgerBtn.addEventListener('click', () => {
+            sidebarNav.classList.add('active');
+            sidebarOverlay.classList.add('active');
+            hamburgerBtn.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+    }
 
-// Open sidebar
-hamburgerBtn.addEventListener('click', () => {
-    sidebarNav.classList.add('active');
-    sidebarOverlay.classList.add('active');
-    hamburgerBtn.classList.add('active');
-    document.body.style.overflow = 'hidden';
-});
+    // Close sidebar
+    function closeSidebar() {
+        if (sidebarNav) sidebarNav.classList.remove('active');
+        if (sidebarOverlay) sidebarOverlay.classList.remove('active');
+        if (hamburgerBtn) hamburgerBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 
-// Close sidebar
-function closeSidebar() {
-    sidebarNav.classList.remove('active');
-    sidebarOverlay.classList.remove('active');
-    hamburgerBtn.classList.remove('active');
-    document.body.style.overflow = '';
-}
+    // Close sidebar with X button
+    if (sidebarClose) {
+        sidebarClose.addEventListener('click', closeSidebar);
+    }
 
-// Close sidebar with X button
-if (sidebarClose) {
-    sidebarClose.addEventListener('click', closeSidebar);
-}
+    // Close sidebar with overlay
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', closeSidebar);
+    }
 
-// Close sidebar with overlay
-if (sidebarOverlay) {
-    sidebarOverlay.addEventListener('click', closeSidebar);
-}
-
-// Close sidebar when clicking a link
-sidebarLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        closeSidebar();
+    // Close sidebar when clicking a link
+    sidebarLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            closeSidebar();
+        });
     });
 });
 
@@ -641,6 +643,30 @@ if (bookingForm) {
             if (btnText) btnText.textContent = 'Отправить заявку';
             submitBtn.disabled = false;
         }
+    });
+}
+
+// ============================================
+// BACK TO TOP BUTTON
+// ============================================
+const backToTopBtn = document.getElementById('backToTop');
+
+if (backToTopBtn) {
+    // Show/hide button on scroll
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    // Scroll to top on click
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 }
 
