@@ -48,7 +48,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Close sidebar with X button
     if (sidebarClose) {
-        sidebarClose.addEventListener('click', closeSidebar);
+        sidebarClose.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Sidebar close clicked!');
+            closeSidebar();
+        });
     }
 
     // Close sidebar with overlay
