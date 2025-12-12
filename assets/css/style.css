@@ -209,6 +209,97 @@ p {
     color: rgba(255, 255, 255, 0.7);
 }
 
+/* Main Price Badge */
+.main-price-badge {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    background: linear-gradient(135deg, rgba(255, 123, 9, 0.15) 0%, rgba(255, 123, 9, 0.05) 100%);
+    border: 3px solid var(--forge-flame);
+    border-radius: 30px;
+    box-shadow: 
+        0 0 40px rgba(255, 123, 9, 0.3),
+        inset 0 0 30px rgba(255, 123, 9, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.main-price-label {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.main-price-value {
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--forge-flame);
+    text-shadow: 0 0 30px rgba(255, 123, 9, 0.6);
+    line-height: 1;
+}
+
+/* Tour Dates Badge */
+.tour-dates-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: linear-gradient(135deg, rgba(24, 22, 21, 0.9) 0%, rgba(24, 22, 21, 0.7) 100%);
+    border: 2px solid rgba(255, 123, 9, 0.4);
+    border-radius: 50px;
+    margin-bottom: var(--spacing-md);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.tour-dates-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--forge-flame) 0%, #ff9933 100%);
+    border-radius: 50%;
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 123, 9, 0.4);
+}
+
+.tour-dates-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.tour-dates-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tour-dates-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: white;
+}
+
+.tour-dates-days {
+    padding: 0.4rem 1rem;
+    background: rgba(255, 123, 9, 0.15);
+    border: 1px solid rgba(255, 123, 9, 0.3);
+    border-radius: 20px;
+}
+
+.tour-dates-days span {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--forge-flame);
+}
+
 /* ============================================
    BUTTONS
    ============================================ */
@@ -1903,12 +1994,142 @@ p {
     pointer-events: none;
 }
 
+/* Hotels Grid */
+.hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto var(--spacing-xl);
+}
+
+.hotel-card {
+    background: linear-gradient(135deg, rgba(24, 22, 21, 0.95) 0%, rgba(24, 22, 21, 0.85) 100%);
+    border: 2px solid rgba(255, 123, 9, 0.3);
+    border-radius: 20px;
+    padding: var(--spacing-lg);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+}
+
+.hotel-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 123, 9, 0.6);
+    box-shadow: 0 25px 60px rgba(255, 123, 9, 0.2);
+}
+
+.hotel-header {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid rgba(255, 123, 9, 0.2);
+}
+
+.hotel-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: linear-gradient(135deg, var(--forge-flame) 0%, #ff9933 100%);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border-radius: 20px;
+    margin-bottom: 0.8rem;
+    box-shadow: 0 4px 15px rgba(255, 123, 9, 0.4);
+}
+
+.hotel-badge svg {
+    flex-shrink: 0;
+}
+
+.hotel-name {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.hotel-prices {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.hotel-price-item {
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    border-left: 3px solid var(--forge-flame);
+}
+
+.hotel-price-item .price-type {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.hotel-price-item .price-type svg {
+    color: var(--forge-flame);
+    flex-shrink: 0;
+}
+
+.hotel-price-item .price-value {
+    color: var(--forge-flame);
+    font-size: 1.8rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+}
+
+.hotel-price-item .price-per-person {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.85rem;
+}
+
+.hotel-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    text-align: center;
+    padding: 0.8rem 1.5rem;
+    background: rgba(255, 123, 9, 0.1);
+    border: 1px solid rgba(255, 123, 9, 0.3);
+    border-radius: 10px;
+    color: var(--forge-flame);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.hotel-link svg {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.hotel-link:hover {
+    background: rgba(255, 123, 9, 0.2);
+    border-color: var(--forge-flame);
+    transform: translateY(-2px);
+}
+
+.hotel-link:hover svg {
+    transform: translate(3px, -3px);
+}
+
 .price-grid {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: 1fr;
     gap: var(--spacing-lg);
-    max-width: 1400px;
-    margin: 0 auto;
+    max-width: 1000px;
+    margin: 0 auto var(--spacing-lg);
 }
 
 /* Price Card with Image */
@@ -2086,6 +2307,9 @@ p {
 }
 
 .includes-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.5rem 1rem;
     background: linear-gradient(135deg, var(--forge-flame) 0%, #ff9933 100%);
     color: white;
@@ -2095,6 +2319,10 @@ p {
     letter-spacing: 1px;
     border-radius: 20px;
     box-shadow: 0 4px 15px rgba(255, 123, 9, 0.4);
+}
+
+.includes-badge svg {
+    flex-shrink: 0;
 }
 
 .includes-list {
@@ -2221,13 +2449,12 @@ p {
 
 .price-cta {
     text-align: center;
-    margin-top: auto;
+    margin-top: var(--spacing-lg);
     padding-top: var(--spacing-md);
 }
 
 .price-cta .btn-large {
-    width: 100%;
-    padding: 1.2rem 2rem;
+    padding: 1.2rem 3rem;
     font-size: 1.1rem;
 }
 
@@ -2237,15 +2464,163 @@ p {
     color: rgba(255, 255, 255, 0.5);
 }
 
+/* What's Included Section */
+.whats-included-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.included-card {
+    background: linear-gradient(135deg, rgba(24, 22, 21, 0.95) 0%, rgba(24, 22, 21, 0.85) 100%);
+    border: 2px solid rgba(255, 123, 9, 0.3);
+    border-radius: 20px;
+    padding: var(--spacing-lg);
+    backdrop-filter: blur(20px);
+}
+
+.included-header {
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid rgba(255, 123, 9, 0.2);
+}
+
+.included-header h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--forge-flame);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.included-header h3 svg {
+    color: var(--forge-flame);
+    flex-shrink: 0;
+}
+
+.included-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-sm);
+}
+
+.included-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.included-item:hover {
+    background: rgba(255, 123, 9, 0.08);
+    transform: translateX(5px);
+}
+
+.included-item .included-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, rgba(255, 123, 9, 0.2) 0%, rgba(255, 123, 9, 0.1) 100%);
+    border-radius: 10px;
+    flex-shrink: 0;
+    color: var(--forge-flame);
+}
+
+.included-item .included-icon svg {
+    color: var(--forge-flame);
+}
+
+.included-item span {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.95rem;
+}
+
+.excluded-card {
+    background: rgba(24, 22, 21, 0.6);
+    border: 1px solid rgba(255, 123, 9, 0.2);
+    border-radius: 20px;
+    padding: var(--spacing-md);
+    height: fit-content;
+}
+
+.excluded-header {
+    margin-bottom: var(--spacing-sm);
+}
+
+.excluded-header h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.excluded-header h4 svg {
+    color: rgba(255, 123, 9, 0.7);
+    flex-shrink: 0;
+}
+
+.excluded-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.excluded-list li {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9rem;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.excluded-list li:last-child {
+    border-bottom: none;
+}
+
+.excluded-list li::before {
+    content: '×';
+    position: absolute;
+    left: 0;
+    color: rgba(255, 123, 9, 0.6);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
 /* Responsive Price Section */
 @media (max-width: 1024px) {
+    .hotels-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .whats-included-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .included-grid {
+        grid-template-columns: 1fr;
+    }
+    
     .price-grid {
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
     }
     
-    .price-card-image {
-        height: 250px;
+    .tour-dates-badge {
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
     }
 }
 
@@ -2264,6 +2639,24 @@ p {
     
     .excludes-list {
         grid-template-columns: 1fr;
+    }
+    
+    .main-price-value {
+        font-size: 3rem;
+    }
+    
+    .tour-dates-badge {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+    }
+    
+    .tour-dates-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .tour-dates-value {
+        font-size: 1rem;
     }
 }
 
@@ -2868,6 +3261,44 @@ p {
     font-size: 0.9rem;
 }
 
+/* Partner Logo in Footer */
+.footer-partner {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 123, 9, 0.2);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    text-align: center;
+}
+
+.partner-label {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
+
+.partner-logo {
+    max-width: 180px;
+    width: 100%;
+    height: auto;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.partner-logo:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 123, 9, 0.3);
+}
+
 .footer-links {
     display: contents;
 }
@@ -3127,6 +3558,11 @@ p {
     
     .footer-logo {
         margin: 0 auto var(--spacing-sm);
+    }
+    
+    .footer-partner {
+        margin: var(--spacing-md) auto 0;
+        max-width: 250px;
     }
 }
 

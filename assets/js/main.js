@@ -473,44 +473,44 @@ function throttle(func, limit) {
 const locationData = {
     'reykjavik': {
         number: '01',
-        title: 'Reykjavik',
-        description: 'Capitala Islandei — baza noastră și punctul de start pentru toate aventurile',
-        badge: 'Bază principală',
+        title: 'Рейкьявик',
+        description: 'Столица Исландии — наша база и отправная точка для всех приключений',
+        badge: 'Главная база',
         icon: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>'
     },
     'snaefellsnes': {
         number: '02',
-        title: 'Peninsula Snæfellsnes',
-        description: 'Kirkjufell, Biserica Neagră, colonie de foci — "Iceland în miniatură"',
-        badge: 'Ziua 4',
+        title: 'Полуостров Снайфедльснес',
+        description: 'Киркьюфетль, Чёрная церковь, колония тюленей — "Исландия в миниатюре"',
+        badge: 'День 4',
         icon: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>'
     },
     'thingvellir': {
         number: '03',
-        title: 'Thingvellir',
-        description: 'Parcul Național UNESCO — punct de întâlnire a plăcilor tectonice',
-        badge: 'Golden Circle',
+        title: 'Тингведлир',
+        description: 'Национальный парк UNESCO — место встречи тектонических плит',
+        badge: 'Золотое кольцо',
         icon: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>'
     },
     'geysir': {
         number: '04',
-        title: 'Geysir',
-        description: 'Zona geotermală cu geyser-ul Strokkur — erupție la fiecare 5-10 minute',
-        badge: 'Golden Circle',
+        title: 'Гейсир',
+        description: 'Геотермальная зона с гейзером Строккур — извержение каждые 5-10 минут',
+        badge: 'Золотое кольцо',
         icon: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>'
     },
     'gullfoss': {
         number: '05',
-        title: 'Gullfoss',
-        description: 'Cascada de Aur — 32 metri de putere spectaculoasă a naturii',
-        badge: 'Golden Circle',
+        title: 'Гюдльфосс',
+        description: 'Золотой водопад — 32 метра впечатляющей мощи природы',
+        badge: 'Золотое кольцо',
         icon: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z"/><path d="M12 6v6l4 2"/></svg>'
     },
     'south-coast': {
         number: '06',
-        title: 'South Coast',
-        description: 'Seljalandsfoss, Skógafoss, plaja de nisip negru — coasta dramatică',
-        badge: 'Ziua 7',
+        title: 'Южное побережье',
+        description: 'Сельяландсфосс, Скоугафосс, пляж с чёрным песком — драматическое побережье',
+        badge: 'День 7',
         icon: '<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>'
     }
 };
