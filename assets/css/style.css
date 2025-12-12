@@ -1051,7 +1051,7 @@ p {
     display: flex;
     gap: var(--spacing-sm);
     margin-top: var(--spacing-md);
-    overflow-x: auto;
+    overflow-x: hidden;
     padding-bottom: var(--spacing-sm);
     scroll-behavior: smooth;
     justify-content: center;
@@ -2661,14 +2661,33 @@ p {
 }
 
 @media (max-width: 480px) {
+    html, body {
+        overflow-x: clip !important;
+        width: 100% !important;
+    }
+    
     * {
         max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Blocăm scroll orizontal pe toate secțiunile EXCEPT benefits */
+    section:not(.benefits) {
+        overflow-x: clip !important;
+    }
+    
+    section:not(.benefits) .container {
+        overflow-x: clip !important;
     }
     
     .container {
         padding: 0 1rem;
         width: 100%;
-        overflow-x: hidden;
+    }
+    
+    img {
+        max-width: 100%;
+        height: auto;
     }
     
     h1 { font-size: 2rem; }
@@ -2742,9 +2761,9 @@ p {
     }
     
     .program-nav {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
+        overflow-x: hidden;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .program-nav::-webkit-scrollbar {
