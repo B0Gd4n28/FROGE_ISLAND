@@ -2663,12 +2663,27 @@ p {
 @media (max-width: 480px) {
     * {
         max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+    
+    section {
+        overflow-x: hidden;
     }
     
     .container {
         padding: 0 1rem;
         width: 100%;
         overflow-x: hidden;
+    }
+    
+    img, video, iframe {
+        max-width: 100%;
+        height: auto;
     }
     
     h1 { font-size: 2rem; }
@@ -2822,6 +2837,60 @@ p {
     
     .detail-description {
         font-size: 0.9rem;
+    }
+    
+    /* Price Section Mobile Fixes */
+    .main-price-badge {
+        width: calc(100% - 2rem);
+        padding: var(--spacing-md) var(--spacing-sm);
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+    .main-price-value {
+        font-size: 2.5rem;
+    }
+    
+    .tour-dates-badge {
+        width: calc(100% - 2rem);
+        flex-direction: column;
+        padding: var(--spacing-sm);
+        gap: 0.5rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+    
+    .tour-dates-days {
+        padding: 0.3rem 0.75rem;
+    }
+    
+    .hotel-card {
+        padding: var(--spacing-md);
+    }
+    
+    .hotel-price {
+        font-size: 1.25rem;
+    }
+    
+    .included-card {
+        padding: var(--spacing-sm);
+    }
+    
+    .included-card h4 {
+        font-size: 0.9rem;
+    }
+    
+    .included-icon {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .whats-included-section {
+        grid-template-columns: 1fr;
+    }
+    
+    .includes-grid {
+        grid-template-columns: 1fr;
     }
 }
 
