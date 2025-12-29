@@ -402,6 +402,66 @@ p {
     align-items: center;
 }
 
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.logo-separator {
+    color: var(--forge-flame);
+    font-size: 1.2rem;
+    font-weight: 300;
+    opacity: 0.7;
+}
+
+.logo-partner {
+    display: flex;
+    align-items: center;
+}
+
+.logo-curmei {
+    height: 45px;
+    width: auto;
+    filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.4));
+}
+
+.header.scrolled .logo-curmei {
+    height: 38px;
+}
+
+@media (max-width: 480px) {
+    .logo-container {
+        gap: 0.4rem;
+    }
+    
+    .logo-img {
+        height: 35px !important;
+    }
+    
+    .logo-curmei {
+        height: 30px !important;
+    }
+    
+    .logo-separator {
+        font-size: 0.9rem;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .logo-container {
+        gap: 0.6rem;
+    }
+    
+    .logo-img {
+        height: 45px;
+    }
+    
+    .logo-curmei {
+        height: 38px;
+    }
+}
+
 .logo-img {
     height: 55px;
     width: auto;
@@ -3260,14 +3320,30 @@ p {
 }
 
 .footer-brand {
-    max-width: 350px;
+    max-width: 400px;
+}
+
+.footer-logos-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer-logo-separator {
+    color: var(--forge-flame);
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.7;
 }
 
 .footer-logo {
-    height: 55px;
+    height: 60px;
     width: auto;
-    padding: 8px 16px;
-    margin-bottom: var(--spacing-xs);
+    max-width: 150px;
+    object-fit: contain;
+    padding: 8px 12px;
     background: rgba(255, 123, 9, 0.08);
     border: 1px solid rgba(255, 123, 9, 0.3);
     border-radius: 12px;
@@ -3298,36 +3374,8 @@ p {
     font-size: 0.9rem;
 }
 
-/* Partner Logo in Footer */
-.footer-partner {
-    margin-top: var(--spacing-md);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    text-align: center;
-}
-
-.partner-label {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.5);
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-}
-
-.partner-logo {
-    max-width: 150px;
-    width: 100%;
-    height: auto;
-    opacity: 0.85;
-    transition: all 0.3s ease;
+.footer-logo.partner-logo {
     filter: brightness(1.1);
-}
-
-.partner-logo:hover {
-    opacity: 1;
-    transform: scale(1.05);
-    filter: brightness(1.2) drop-shadow(0 0 10px rgba(255, 123, 9, 0.3));
 }
 
 .footer-links {
