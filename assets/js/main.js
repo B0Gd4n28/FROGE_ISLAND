@@ -11,26 +11,27 @@ document.addEventListener('DOMContentLoaded', function() {
     const isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
     
     AOS.init({
-        duration: isMobile ? 400 : 800,
+        duration: isMobile ? 300 : 600,
         easing: 'ease-out',
         once: true,
-        offset: isMobile ? 50 : 100,
-        disable: false,
+        offset: isMobile ? 30 : 80,
+        disable: isMobile ? 'phone' : false,
         anchorPlacement: 'top-bottom',
-        // Disable on mobile if causing issues
-        startEvent: 'DOMContentLoaded',
-        throttleDelay: 99,
-        debounceDelay: 50
+        startEvent: 'load',
+        throttleDelay: 150,
+        debounceDelay: 100,
+        mirror: false,
+        useClassNames: false
     });
 
-    // Refresh AOS on window resize (debounced)
+    // Refresh AOS on window resize (heavily debounced)
     let resizeTimer;
     window.addEventListener('resize', function() {
         clearTimeout(resizeTimer);
         resizeTimer = setTimeout(function() {
             AOS.refresh();
-        }, 250);
-    });
+        }, 500);
+    }, { passive: true });
     
     // ============================================
     // HAMBURGER MENU & SIDEBAR NAVIGATION

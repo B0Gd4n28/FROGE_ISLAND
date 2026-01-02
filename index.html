@@ -119,7 +119,7 @@
                 <span class="hero-accent">ODYSSEY</span>
                 СТРАТЕГУРУ
                 <span class="hero-location">ИСЛАНДИЯ: ЛЕД И ПЛАМЯ</span>
-                <span class="hero-subtitle">ЗЕМЛЯ ОГНЯ И ЛЬДА</span>
+                
             </h1>
             
             <!-- Date și Locație -->
@@ -1221,112 +1221,55 @@
     <!-- Custom JavaScript -->
     <script src="assets/js/main.js" defer></script>
     
-    <!-- Video Autoplay on Scroll (iOS Compatible) -->
+    <!-- Video Autoplay on Scroll (iOS Compatible + Performance Optimized) -->
     <script>
         (function() {
-            // iOS video autoplay fix - runs immediately, not waiting for DOMContentLoaded
-            const heroVideo = document.getElementById('heroVideo');
-            const autoplayVideo = document.getElementById('autoplayVideo');
+            var heroVideo = document.getElementById('heroVideo');
+            var autoplayVideo = document.getElementById('autoplayVideo');
+            var hasInteracted = false;
             
-            // Detect iOS
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            
-            // Function to play video with iOS fallback
+            // Simple play function
             function playVideo(video) {
                 if (!video) return;
-                
-                // Ensure video is muted (required for iOS autoplay)
                 video.muted = true;
-                video.setAttribute('muted', '');
-                
-                // Load and play
-                video.load();
-                
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(function() {
-                        console.log('Video playing:', video.id);
-                    }).catch(function(error) {
-                        console.log('Autoplay prevented for:', video.id, error);
-                        // Retry after a short delay
-                        setTimeout(function() {
-                            video.play().catch(function() {});
-                        }, 100);
-                    });
-                }
+                try {
+                    var p = video.play();
+                    if (p) p.catch(function(){});
+                } catch(e) {}
             }
             
-            // Function to initialize videos
-            function initVideos() {
-                if (heroVideo) {
-                    playVideo(heroVideo);
-                }
+            // Init hero video
+            function init() {
+                if (heroVideo) playVideo(heroVideo);
             }
             
-            // Try immediately
-            if (document.readyState === 'complete' || document.readyState === 'interactive') {
-                initVideos();
+            // Run on load
+            if (document.readyState === 'complete') {
+                init();
             } else {
-                document.addEventListener('DOMContentLoaded', initVideos);
+                window.addEventListener('load', init, {once: true});
             }
             
-            // Also try on window load
+            // Second video - IntersectionObserver (lazy)
             window.addEventListener('load', function() {
-                initVideos();
-                
-                // For second video, use IntersectionObserver
-                if (autoplayVideo) {
-                    const observer = new IntersectionObserver(function(entries) {
-                        entries.forEach(function(entry) {
-                            if (entry.isIntersecting) {
-                                playVideo(autoplayVideo);
-                            }
-                        });
-                    }, { threshold: 0.2 });
-                    observer.observe(autoplayVideo);
-                    
-                    // Also try to play if visible on load
-                    const rect = autoplayVideo.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        playVideo(autoplayVideo);
-                    }
+                if (autoplayVideo && 'IntersectionObserver' in window) {
+                    var obs = new IntersectionObserver(function(e) {
+                        if (e[0].isIntersecting) playVideo(autoplayVideo);
+                    }, {threshold: 0.2, rootMargin: '50px'});
+                    obs.observe(autoplayVideo);
                 }
-            });
+            }, {once: true});
             
-            // iOS: Play on ANY user interaction (touch, click, scroll)
-            let hasInteracted = false;
-            function onUserInteraction() {
+            // iOS: First interaction triggers video
+            function onInteract() {
                 if (hasInteracted) return;
                 hasInteracted = true;
-                
-                console.log('User interaction detected, playing videos...');
-                
                 if (heroVideo) playVideo(heroVideo);
-                if (autoplayVideo) {
-                    const rect = autoplayVideo.getBoundingClientRect();
-                    if (rect.top < window.innerHeight && rect.bottom > 0) {
-                        playVideo(autoplayVideo);
-                    }
-                }
-                
-                // Remove listeners
-                ['touchstart', 'touchend', 'click', 'scroll', 'mousedown'].forEach(function(event) {
-                    document.removeEventListener(event, onUserInteraction);
-                });
+                document.removeEventListener('touchstart', onInteract);
+                document.removeEventListener('click', onInteract);
             }
-            
-            // Add multiple event listeners for iOS
-            ['touchstart', 'touchend', 'click', 'scroll', 'mousedown'].forEach(function(event) {
-                document.addEventListener(event, onUserInteraction, { passive: true, once: false });
-            });
-            
-            // Visibility change - play when page becomes visible
-            document.addEventListener('visibilitychange', function() {
-                if (!document.hidden && hasInteracted) {
-                    if (heroVideo && heroVideo.paused) playVideo(heroVideo);
-                }
-            });
+            document.addEventListener('touchstart', onInteract, {passive: true, once: true});
+            document.addEventListener('click', onInteract, {passive: true, once: true});
         })();
     </script>
 </body>
