@@ -1221,22 +1221,62 @@
     <!-- Custom JavaScript -->
     <script src="assets/js/main.js" defer></script>
     
-    <!-- Video Autoplay on Scroll -->
+    <!-- Video Autoplay on Scroll (iOS Compatible) -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const video = document.getElementById('autoplayVideo');
-            if (video) {
+            // iOS video autoplay fix - both videos
+            const heroVideo = document.querySelector('.hero-video');
+            const autoplayVideo = document.getElementById('autoplayVideo');
+            
+            // Function to play video with iOS fallback
+            function playVideo(video) {
+                if (video) {
+                    const playPromise = video.play();
+                    if (playPromise !== undefined) {
+                        playPromise.catch(function(error) {
+                            // Autoplay was prevented, wait for user interaction
+                            console.log('Autoplay prevented, waiting for interaction');
+                        });
+                    }
+                }
+            }
+            
+            // Try to play hero video immediately
+            if (heroVideo) {
+                playVideo(heroVideo);
+            }
+            
+            // Autoplay video when scrolled into view
+            if (autoplayVideo) {
                 const observer = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            video.play();
+                            playVideo(autoplayVideo);
                         } else {
-                            video.pause();
+                            autoplayVideo.pause();
                         }
                     });
                 }, { threshold: 0.3 });
-                observer.observe(video);
+                observer.observe(autoplayVideo);
             }
+            
+            // iOS fix: Play videos after first user interaction
+            let hasInteracted = false;
+            function onFirstInteraction() {
+                if (hasInteracted) return;
+                hasInteracted = true;
+                
+                if (heroVideo) playVideo(heroVideo);
+                
+                // Remove listeners after first interaction
+                document.removeEventListener('touchstart', onFirstInteraction);
+                document.removeEventListener('click', onFirstInteraction);
+                document.removeEventListener('scroll', onFirstInteraction);
+            }
+            
+            document.addEventListener('touchstart', onFirstInteraction, { passive: true });
+            document.addEventListener('click', onFirstInteraction, { passive: true });
+            document.addEventListener('scroll', onFirstInteraction, { passive: true });
         });
     </script>
 </body>

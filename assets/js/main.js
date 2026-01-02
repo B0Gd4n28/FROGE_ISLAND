@@ -7,16 +7,29 @@
 // INITIALIZE AOS (Animate On Scroll)
 // ============================================
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if mobile device
+    const isMobile = window.innerWidth <= 768 || /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    
     AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
+        duration: isMobile ? 400 : 800,
+        easing: 'ease-out',
         once: true,
-        offset: 100
+        offset: isMobile ? 50 : 100,
+        disable: false,
+        anchorPlacement: 'top-bottom',
+        // Disable on mobile if causing issues
+        startEvent: 'DOMContentLoaded',
+        throttleDelay: 99,
+        debounceDelay: 50
     });
 
-    // Refresh AOS on window resize
+    // Refresh AOS on window resize (debounced)
+    let resizeTimer;
     window.addEventListener('resize', function() {
-        AOS.refresh();
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            AOS.refresh();
+        }, 250);
     });
     
     // ============================================
