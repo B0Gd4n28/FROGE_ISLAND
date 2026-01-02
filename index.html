@@ -107,7 +107,7 @@
     <!-- Hero Section -->
     <section class="hero" id="hero">
         <!-- Video Background -->
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto">
             <source src="assets/videos/hero-winter.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -718,7 +718,7 @@
 
         <!-- Video Autoplay Section -->
         <div class="video-autoplay-container" data-aos="fade-up">
-            <video id="autoplayVideo" controls muted playsinline loop poster="assets/images/photo_2026-01-02_10-43-45.webp">
+            <video id="autoplayVideo" autoplay controls muted playsinline webkit-playsinline loop preload="auto" poster="assets/images/photo_2026-01-02_10-43-45.webp">
                 <source src="assets/videos/video-froge.mp4" type="video/mp4">
             </video>
         </div>
@@ -1223,61 +1223,111 @@
     
     <!-- Video Autoplay on Scroll (iOS Compatible) -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // iOS video autoplay fix - both videos
-            const heroVideo = document.querySelector('.hero-video');
+        (function() {
+            // iOS video autoplay fix - runs immediately, not waiting for DOMContentLoaded
+            const heroVideo = document.getElementById('heroVideo');
             const autoplayVideo = document.getElementById('autoplayVideo');
+            
+            // Detect iOS
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+                          (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
             
             // Function to play video with iOS fallback
             function playVideo(video) {
-                if (video) {
-                    const playPromise = video.play();
-                    if (playPromise !== undefined) {
-                        playPromise.catch(function(error) {
-                            // Autoplay was prevented, wait for user interaction
-                            console.log('Autoplay prevented, waiting for interaction');
-                        });
-                    }
+                if (!video) return;
+                
+                // Ensure video is muted (required for iOS autoplay)
+                video.muted = true;
+                video.setAttribute('muted', '');
+                
+                // Load and play
+                video.load();
+                
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(function() {
+                        console.log('Video playing:', video.id);
+                    }).catch(function(error) {
+                        console.log('Autoplay prevented for:', video.id, error);
+                        // Retry after a short delay
+                        setTimeout(function() {
+                            video.play().catch(function() {});
+                        }, 100);
+                    });
                 }
             }
             
-            // Try to play hero video immediately
-            if (heroVideo) {
-                playVideo(heroVideo);
+            // Function to initialize videos
+            function initVideos() {
+                if (heroVideo) {
+                    playVideo(heroVideo);
+                }
             }
             
-            // Autoplay video when scrolled into view
-            if (autoplayVideo) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            playVideo(autoplayVideo);
-                        } else {
-                            autoplayVideo.pause();
-                        }
-                    });
-                }, { threshold: 0.3 });
-                observer.observe(autoplayVideo);
+            // Try immediately
+            if (document.readyState === 'complete' || document.readyState === 'interactive') {
+                initVideos();
+            } else {
+                document.addEventListener('DOMContentLoaded', initVideos);
             }
             
-            // iOS fix: Play videos after first user interaction
+            // Also try on window load
+            window.addEventListener('load', function() {
+                initVideos();
+                
+                // For second video, use IntersectionObserver
+                if (autoplayVideo) {
+                    const observer = new IntersectionObserver(function(entries) {
+                        entries.forEach(function(entry) {
+                            if (entry.isIntersecting) {
+                                playVideo(autoplayVideo);
+                            }
+                        });
+                    }, { threshold: 0.2 });
+                    observer.observe(autoplayVideo);
+                    
+                    // Also try to play if visible on load
+                    const rect = autoplayVideo.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        playVideo(autoplayVideo);
+                    }
+                }
+            });
+            
+            // iOS: Play on ANY user interaction (touch, click, scroll)
             let hasInteracted = false;
-            function onFirstInteraction() {
+            function onUserInteraction() {
                 if (hasInteracted) return;
                 hasInteracted = true;
                 
-                if (heroVideo) playVideo(heroVideo);
+                console.log('User interaction detected, playing videos...');
                 
-                // Remove listeners after first interaction
-                document.removeEventListener('touchstart', onFirstInteraction);
-                document.removeEventListener('click', onFirstInteraction);
-                document.removeEventListener('scroll', onFirstInteraction);
+                if (heroVideo) playVideo(heroVideo);
+                if (autoplayVideo) {
+                    const rect = autoplayVideo.getBoundingClientRect();
+                    if (rect.top < window.innerHeight && rect.bottom > 0) {
+                        playVideo(autoplayVideo);
+                    }
+                }
+                
+                // Remove listeners
+                ['touchstart', 'touchend', 'click', 'scroll', 'mousedown'].forEach(function(event) {
+                    document.removeEventListener(event, onUserInteraction);
+                });
             }
             
-            document.addEventListener('touchstart', onFirstInteraction, { passive: true });
-            document.addEventListener('click', onFirstInteraction, { passive: true });
-            document.addEventListener('scroll', onFirstInteraction, { passive: true });
-        });
+            // Add multiple event listeners for iOS
+            ['touchstart', 'touchend', 'click', 'scroll', 'mousedown'].forEach(function(event) {
+                document.addEventListener(event, onUserInteraction, { passive: true, once: false });
+            });
+            
+            // Visibility change - play when page becomes visible
+            document.addEventListener('visibilitychange', function() {
+                if (!document.hidden && hasInteracted) {
+                    if (heroVideo && heroVideo.paused) playVideo(heroVideo);
+                }
+            });
+        })();
     </script>
 </body>
 </html>
