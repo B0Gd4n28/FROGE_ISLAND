@@ -1675,11 +1675,14 @@ p {
     height: 800px;
     background: radial-gradient(circle, rgba(255, 123, 9, 0.08) 0%, transparent 70%);
     pointer-events: none;
-    /* Animation removed for scroll performance */\n}\n\n.iceland-map-container {
+}
+
+.iceland-map-container {
     margin: var(--spacing-md) auto;
     max-width: 1400px;
     position: relative;
     z-index: 1;
+    overflow: visible;
 }
 
 .iceland-map-wrapper {
@@ -1688,9 +1691,10 @@ p {
     overflow: hidden;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 80px rgba(255, 255, 255, 0.1);
     border: 3px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.4s ease;
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
     background: rgba(255, 255, 255, 0.05);
     aspect-ratio: 16 / 9;
+    max-height: 600px;
 }
 
 .iceland-map-wrapper:hover {
@@ -1704,8 +1708,9 @@ p {
     display: block;
     object-fit: contain;
     filter: brightness(1.3) contrast(1.1) saturate(0) invert(1);
-    transition: all 0.4s ease;
+    transition: filter 0.4s ease, opacity 0.4s ease;
     opacity: 0.9;
+    pointer-events: none;
 }
 
 .iceland-map-wrapper:hover .iceland-map-image {
