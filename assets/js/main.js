@@ -647,12 +647,8 @@ if (bookingForm) {
                 body: JSON.stringify(data)
             });
             
-            // Show success message
-            this.style.display = 'none';
-            if (formSuccess) {
-                formSuccess.style.display = 'block';
-                formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            // Redirect to success page for better analytics tracking
+            window.location.href = 'success.html';
             
         } catch (error) {
             alert('Ошибка при отправке формы. Пожалуйста, попробуйте еще раз.');

@@ -434,6 +434,64 @@ p {
     align-items: center;
 }
 
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.header-phone {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.header-phone:hover {
+    background: linear-gradient(135deg, var(--forge-flame) 0%, #ff9933 100%);
+    border-color: var(--forge-flame);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 123, 9, 0.4);
+}
+
+.header-phone svg {
+    stroke: var(--forge-flame);
+    flex-shrink: 0;
+    transition: stroke 0.3s ease;
+}
+
+.header-phone:hover svg {
+    stroke: var(--white);
+}
+
+@media (max-width: 768px) {
+    .header-phone span {
+        display: none;
+    }
+    
+    .header-phone {
+        padding: 0.6rem;
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        justify-content: center;
+    }
+    
+    .header-right {
+        gap: 0.5rem;
+    }
+}
+
 .logo-container {
     display: flex;
     align-items: center;
@@ -1662,7 +1720,8 @@ p {
         radial-gradient(circle at 50% 0%, rgba(255, 123, 9, 0.05) 0%, transparent 50%),
         linear-gradient(180deg, #0a0909 0%, var(--forge-coal) 50%, #0a0909 100%);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    overflow-x: clip;
 }
 
 .map-section::before {
