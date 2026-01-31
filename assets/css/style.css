@@ -1771,9 +1771,9 @@ p {
     transition: box-shadow 0.4s ease, border-color 0.4s ease;
     background: rgba(255, 255, 255, 0.05);
     aspect-ratio: 16 / 9;
-    max-height: 600px;
+    max-height: 450px;
     width: 100%;
-    max-width: 1100px;
+    max-width: 900px;
 }
 
 .iceland-map-wrapper:hover {
