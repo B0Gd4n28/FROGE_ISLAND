@@ -16,117 +16,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
     <style>
-        :root {
-            --forge-flame: #FF7B09;
-            --forge-gold: #FBBF24;
-            --forge-coal: #1a1816;
-            --white: #ffffff;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #0a0909 0%, #1a1816 50%, #0f0e0d 100%);
+        /* Success Page Specific Styles */
+        .success-page-body {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+        
+        .success-main {
+            flex: 1;
+            display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--white);
-            padding: 2rem;
-            padding-top: 100px;
-            overflow-x: hidden;
+            padding: 120px 2rem 4rem;
+            background: linear-gradient(135deg, #0a0909 0%, #1a1816 50%, #0f0e0d 100%);
             position: relative;
+            overflow: hidden;
         }
         
-        /* Header */
-        .success-header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: var(--white);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-        
-        .header-logo img {
-            height: 45px;
-            width: auto;
-        }
-        
-        .header-logo .logo-separator {
-            color: var(--forge-flame);
-            font-size: 1.2rem;
-            opacity: 0.7;
-        }
-        
-        .header-phone-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: var(--forge-coal);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 600;
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            background: linear-gradient(135deg, rgba(255, 123, 9, 0.1) 0%, rgba(255, 123, 9, 0.05) 100%);
-            border: 1px solid rgba(255, 123, 9, 0.3);
-            transition: all 0.3s ease;
-        }
-        
-        .header-phone-link:hover {
-            background: linear-gradient(135deg, var(--forge-flame) 0%, #ff9933 100%);
-            color: white;
-        }
-        
-        .header-phone-link svg {
-            stroke: var(--forge-flame);
-        }
-        
-        .header-phone-link:hover svg {
-            stroke: white;
-        }
-        
-        @media (max-width: 600px) {
-            .success-header {
-                padding: 0.8rem 1rem;
-            }
-            
-            .header-logo img {
-                height: 35px;
-            }
-            
-            .header-phone-link span {
-                display: none;
-            }
-            
-            .header-phone-link {
-                padding: 0.5rem;
-                border-radius: 50%;
-            }
-        }
-        
-        /* Animated Background */
+        /* Background Animation */
         .bg-animation {
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
@@ -153,7 +67,7 @@
         .bg-circle:nth-child(2) {
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, var(--forge-gold) 0%, transparent 70%);
+            background: radial-gradient(circle, #FBBF24 0%, transparent 70%);
             bottom: -100px;
             left: -100px;
             animation: float 12s ease-in-out infinite reverse;
@@ -189,14 +103,8 @@
         }
         
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         /* Success Icon */
@@ -204,28 +112,18 @@
             width: 120px;
             height: 120px;
             margin: 0 auto 2rem;
-            background: linear-gradient(135deg, var(--forge-flame) 0%, var(--forge-gold) 100%);
+            background: linear-gradient(135deg, var(--forge-flame) 0%, #FBBF24 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 
-                0 10px 40px rgba(255, 123, 9, 0.4),
-                0 0 80px rgba(255, 123, 9, 0.2);
+            box-shadow: 0 10px 40px rgba(255, 123, 9, 0.4), 0 0 80px rgba(255, 123, 9, 0.2);
             animation: successPulse 2s ease-in-out infinite;
         }
         
         @keyframes successPulse {
-            0%, 100% { 
-                box-shadow: 
-                    0 10px 40px rgba(255, 123, 9, 0.4),
-                    0 0 80px rgba(255, 123, 9, 0.2);
-            }
-            50% { 
-                box-shadow: 
-                    0 15px 60px rgba(255, 123, 9, 0.5),
-                    0 0 120px rgba(255, 123, 9, 0.3);
-            }
+            0%, 100% { box-shadow: 0 10px 40px rgba(255, 123, 9, 0.4), 0 0 80px rgba(255, 123, 9, 0.2); }
+            50% { box-shadow: 0 15px 60px rgba(255, 123, 9, 0.5), 0 0 120px rgba(255, 123, 9, 0.3); }
         }
         
         .success-icon svg {
@@ -238,43 +136,12 @@
         }
         
         @keyframes checkmark {
-            0% {
-                stroke-dasharray: 100;
-                stroke-dashoffset: 100;
-            }
-            100% {
-                stroke-dasharray: 100;
-                stroke-dashoffset: 0;
-            }
+            0% { stroke-dasharray: 100; stroke-dashoffset: 100; }
+            100% { stroke-dasharray: 100; stroke-dashoffset: 0; }
         }
         
-        /* Logo */
-        .success-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-        
-        .success-logo img {
-            height: 50px;
-            width: auto;
-        }
-        
-        .success-logo .logo-curmei {
-            filter: drop-shadow(0 2px 6px rgba(212, 175, 55, 0.4));
-        }
-        
-        .logo-separator {
-            color: var(--forge-flame);
-            font-size: 1.5rem;
-            opacity: 0.7;
-        }
-        
-        /* Typography */
         .success-title {
-            font-family: 'Unbounded', sans-serif;
+            font-family: var(--font-heading);
             font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 700;
             margin-bottom: 1rem;
@@ -298,7 +165,6 @@
             margin-bottom: 2.5rem;
         }
         
-        /* Card Info */
         .info-card {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 123, 9, 0.2);
@@ -309,10 +175,10 @@
         }
         
         .info-card h3 {
-            font-family: 'Unbounded', sans-serif;
+            font-family: var(--font-heading);
             font-size: 1.1rem;
             margin-bottom: 1rem;
-            color: var(--forge-gold);
+            color: #FBBF24;
         }
         
         .info-list {
@@ -335,7 +201,6 @@
             stroke: var(--forge-flame);
         }
         
-        /* Buttons */
         .success-buttons {
             display: flex;
             gap: 1rem;
@@ -343,63 +208,45 @@
             flex-wrap: wrap;
         }
         
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+        .success-buttons .btn { display: inline-flex; align-items: center; gap: 0.5rem; }
+        
+        .btn-secondary-light {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
             padding: 1rem 2rem;
             border-radius: 12px;
             font-size: 1rem;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
-        .btn-primary {
-            background: linear-gradient(135deg, var(--forge-flame) 0%, #ff9933 100%);
-            color: white;
-            box-shadow: 0 4px 20px rgba(255, 123, 9, 0.4);
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(255, 123, 9, 0.5);
-        }
-        
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .btn-secondary:hover {
+        .btn-secondary-light:hover {
             background: rgba(255, 255, 255, 0.15);
             border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
         }
         
-        /* Contact Section */
-        .contact-section {
+        .success-contact {
             margin-top: 3rem;
             padding-top: 2rem;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .contact-section p {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 1rem;
-        }
+        .success-contact > p { font-size: 0.95rem; color: rgba(255, 255, 255, 0.6); margin-bottom: 1rem; }
         
-        .contact-links {
+        .success-contact-links {
             display: flex;
             gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
         }
         
-        .contact-link {
+        .success-contact-link {
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -409,23 +256,17 @@
             transition: color 0.3s ease;
         }
         
-        .contact-link:hover {
-            color: var(--forge-flame);
-        }
+        .success-contact-link:hover { color: var(--forge-flame); }
+        .success-contact-link svg { stroke: var(--forge-flame); }
         
-        .contact-link svg {
-            stroke: var(--forge-flame);
-        }
-        
-        /* Social Links */
-        .social-links {
+        .success-social-links {
             display: flex;
             gap: 1rem;
             justify-content: center;
             margin-top: 1.5rem;
         }
         
-        .social-link {
+        .success-social-link {
             width: 45px;
             height: 45px;
             border-radius: 50%;
@@ -435,234 +276,242 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
         
-        .social-link:hover {
+        .success-social-link:hover {
             background: rgba(255, 123, 9, 0.2);
             border-color: var(--forge-flame);
             transform: translateY(-3px);
         }
         
-        .social-link svg {
-            width: 20px;
-            height: 20px;
-            stroke: rgba(255, 255, 255, 0.8);
-            fill: none;
-        }
+        .success-social-link svg { width: 20px; height: 20px; stroke: rgba(255, 255, 255, 0.8); fill: none; }
+        .success-social-link:hover svg { stroke: var(--forge-flame); }
         
-        .social-link:hover svg {
-            stroke: var(--forge-flame);
-        }
-        
-        /* Confetti Animation */
         .confetti {
             position: fixed;
             width: 10px;
             height: 10px;
             background: var(--forge-flame);
             animation: confetti-fall 3s ease-out forwards;
-            z-index: 100;
+            z-index: 9999;
         }
         
         @keyframes confetti-fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(100vh) rotate(720deg);
-                opacity: 0;
-            }
-        }
-        
-        /* Footer */
-        .success-footer {
-            margin-top: 3rem;
-            font-size: 0.85rem;
-            color: rgba(255, 255, 255, 0.4);
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
         }
         
         @media (max-width: 480px) {
-            .success-icon {
-                width: 90px;
-                height: 90px;
-            }
-            
-            .success-icon svg {
-                width: 45px;
-                height: 45px;
-            }
-            
-            .info-card {
-                padding: 1.5rem;
-            }
-            
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .success-logo img {
-                height: 35px;
-            }
+            .success-main { padding: 100px 1rem 2rem; }
+            .success-icon { width: 90px; height: 90px; }
+            .success-icon svg { width: 45px; height: 45px; }
+            .info-card { padding: 1.5rem; }
+            .success-buttons .btn, .btn-secondary-light { width: 100%; justify-content: center; }
+        }
+        
+        /* Force header white state on success page */
+        .success-page-body .header {
+            background: rgba(255, 255, 255, 0.98) !important;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .success-page-body .header-phone {
+            color: var(--forge-coal);
+            background: linear-gradient(135deg, rgba(255, 123, 9, 0.1) 0%, rgba(255, 123, 9, 0.05) 100%);
+            border: 1px solid rgba(255, 123, 9, 0.3);
+        }
+        
+        .success-page-body .header-phone:hover {
+            background: linear-gradient(135deg, var(--forge-flame) 0%, #ff9933 100%);
+            border-color: var(--forge-flame);
+            color: var(--white);
         }
     </style>
-    
-    <!-- Analytics - Google Tag (if you have one) -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script> -->
 </head>
-<body>
-    <!-- Header with White Background -->
-    <header class="success-header">
-        <div class="header-logo">
-            <img src="assets/images/forge-logo.svg" alt="Forge Academy">
-            <span class="logo-separator">×</span>
-            <img src="assets/images/gold logo curmei.png" alt="Curmei Travel">
+<body class="success-page-body">
+    
+    <!-- Header (same as index) -->
+    <header class="header" id="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-container">
+                    <div class="logo">
+                        <img src="assets/images/forge-logo.svg" alt="Forge Academy" class="logo-img" width="120" height="40">
+                    </div>
+                    <span class="logo-separator">×</span>
+                    <div class="logo logo-partner">
+                        <img src="assets/images/gold logo curmei.png" alt="Curmei Travel" class="logo-img logo-curmei" width="120" height="40">
+                    </div>
+                </div>
+                <div class="header-right">
+                    <a href="tel:+37379944345" class="header-phone">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span>+373 799 44 345</span>
+                    </a>
+                </div>
+            </div>
         </div>
-        <a href="tel:+37379944345" class="header-phone-link">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-            </svg>
-            <span>+373 799 44 345</span>
-        </a>
     </header>
 
-    <!-- Background Animation -->
-    <div class="bg-animation">
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-        <div class="bg-circle"></div>
-    </div>
-    
-    <div class="success-container">
-        <!-- Success Icon -->
-        <div class="success-icon">
-            <svg viewBox="0 0 24 24">
-                <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
+    <!-- Main Content -->
+    <main class="success-main">
+        <div class="bg-animation">
+            <div class="bg-circle"></div>
+            <div class="bg-circle"></div>
+            <div class="bg-circle"></div>
         </div>
         
-        <!-- Title -->
-        <h1 class="success-title">Заявка принята!</h1>
-        <p class="success-subtitle">Добро пожаловать в экспедицию мечты</p>
-        
-        <!-- Message -->
-        <p class="success-message">
-            Благодарим вас за интерес к нашей эксклюзивной экспедиции в Исландию. 
-            Ваша заявка успешно отправлена, и наш менеджер свяжется с вами в ближайшее время 
-            для уточнения деталей и подтверждения бронирования.
-        </p>
-        
-        <!-- Info Card -->
-        <div class="info-card">
-            <h3>🇮🇸 Что дальше?</h3>
-            <ul class="info-list">
-                <li>
-                    <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"></circle>
-                        <polyline points="12 6 12 12 16 14"></polyline>
-                    </svg>
-                    <span>В течение 24 часов с вами свяжется наш менеджер</span>
-                </li>
-                <li>
-                    <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                    </svg>
-                    <span>Мы ответим на все ваши вопросы об экспедиции</span>
-                </li>
-                <li>
-                    <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2">
-                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                        <line x1="1" y1="10" x2="23" y2="10"></line>
-                    </svg>
-                    <span>Обсудим удобный способ оплаты и условия участия</span>
-                </li>
-                <li>
-                    <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                        <polyline points="14 2 14 8 20 8"></polyline>
-                        <line x1="16" y1="13" x2="8" y2="13"></line>
-                        <line x1="16" y1="17" x2="8" y2="17"></line>
-                        <polyline points="10 9 9 9 8 9"></polyline>
-                    </svg>
-                    <span>Получите подробную программу и чек-лист для подготовки</span>
-                </li>
-            </ul>
-        </div>
-        
-        <!-- Buttons -->
-        <div class="success-buttons">
-            <a href="index.html" class="btn btn-primary">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-                На главную
-            </a>
-            <a href="index.html#program" class="btn btn-secondary">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                Программа экспедиции
-            </a>
-        </div>
-        
-        <!-- Contact Section -->
-        <div class="contact-section">
-            <p>Если у вас есть вопросы, свяжитесь с нами:</p>
-            <div class="contact-links">
-                <a href="tel:+37379944345" class="contact-link">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                    +373 799 44 345
+        <div class="success-container">
+            <div class="success-icon">
+                <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            
+            <h1 class="success-title">Заявка принята!</h1>
+            <p class="success-subtitle">Добро пожаловать в экспедицию мечты</p>
+            
+            <p class="success-message">
+                Благодарим вас за интерес к нашей эксклюзивной экспедиции в Исландию. 
+                Ваша заявка успешно отправлена, и наш менеджер свяжется с вами в ближайшее время 
+                для уточнения деталей и подтверждения бронирования.
+            </p>
+            
+            <div class="info-card">
+                <h3>🇮🇸 Что дальше?</h3>
+                <ul class="info-list">
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>В течение 24 часов с вами свяжется наш менеджер</span>
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2" fill="none"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span>Мы ответим на все ваши вопросы об экспедиции</span>
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2" fill="none"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+                        <span>Обсудим удобный способ оплаты и условия участия</span>
+                    </li>
+                    <li>
+                        <svg width="18" height="18" viewBox="0 0 24 24" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                        <span>Получите подробную программу и чек-лист для подготовки</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="success-buttons">
+                <a href="index.html" class="btn btn-primary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                    На главную
                 </a>
-                <a href="mailto:forgeacademy100@gmail.com" class="contact-link">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    forgeacademy100@gmail.com
+                <a href="index.html#program" class="btn-secondary-light">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                    Программа экспедиции
                 </a>
             </div>
             
-            <!-- Social Links -->
-            <div class="social-links">
-                <a href="https://www.facebook.com/share/16fbA2Duwi/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook">
-                    <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/forge_academy_md/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                    <svg viewBox="0 0 24 24">
-                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                </a>
-                <a href="https://www.linkedin.com/in/forge-academy-856769377/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                        <rect x="2" y="9" width="4" height="12"></rect>
-                        <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                </a>
+            <div class="success-contact">
+                <p>Если у вас есть вопросы, свяжитесь с нами:</p>
+                <div class="success-contact-links">
+                    <a href="tel:+37379944345" class="success-contact-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        +373 799 44 345
+                    </a>
+                    <a href="mailto:forgeacademy100@gmail.com" class="success-contact-link">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        forgeacademy100@gmail.com
+                    </a>
+                </div>
+                
+                <div class="success-social-links">
+                    <a href="https://www.facebook.com/share/16fbA2Duwi/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="success-social-link" aria-label="Facebook">
+                        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/forge_academy_md/" target="_blank" rel="noopener noreferrer" class="success-social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/forge-academy-856769377/" target="_blank" rel="noopener noreferrer" class="success-social-link" aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+                </div>
             </div>
         </div>
-        
-        <!-- Footer -->
-        <p class="success-footer">© 2025-2026 Forge Academy. Все права защищены.</p>
-    </div>
+    </main>
+
+    <!-- Footer (same as index) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="footer-logos-row">
+                        <img src="assets/images/forge-logo.svg" alt="Forge Academy Logo" class="footer-logo" width="140" height="50">
+                        <span class="footer-logo-separator">×</span>
+                        <img src="assets/images/gold%20logo%20curmei.png" alt="Curmei Travel Logo" class="footer-logo partner-logo" width="140" height="50">
+                    </div>
+                    <p class="footer-tagline">Ковать лидеров будущего</p>
+                    <p class="footer-philosophy">Опыт всегда побеждает теорию</p>
+                </div>
+
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Навигация</h4>
+                        <ul>
+                            <li><a href="index.html#benefits">Преимущества</a></li>
+                            <li><a href="index.html#program">Программа</a></li>
+                            <li><a href="index.html#map">Карта</a></li>
+                            <li><a href="index.html#audience">Участники</a></li>
+                            <li><a href="index.html#price">Цена</a></li>
+                            <li><a href="index.html#booking">Забронировать</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Контакты</h4>
+                        <ul>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                г.Кишинев, ул. Каля Ешилор 10 б
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                <a href="mailto:forgeacademy100@gmail.com">forgeacademy100@gmail.com</a>
+                            </li>
+                            <li>
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                <a href="tel:+37379944345">+373 799 44 345</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h4>Социальные сети</h4>
+                        <div class="footer-social-links">
+                            <a href="https://www.facebook.com/share/16fbA2Duwi/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                            </a>
+                            <a href="https://www.instagram.com/forge_academy_md/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </a>
+                            <a href="https://www.linkedin.com/in/forge-academy-856769377/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025-2026 Forge Academy. Все права защищены.</p>
+                <p class="footer-developer">Developed by <a href="https://bogdanob.info/?lang=en#" target="_blank" rel="noopener noreferrer">Obreja_Factory</a></p>
+            </div>
+        </div>
+    </footer>
     
     <script>
-        // Create confetti effect
         function createConfetti() {
             const colors = ['#FF7B09', '#FBBF24', '#ffffff', '#ff9933', '#ffcc66'];
-            
             for (let i = 0; i < 50; i++) {
                 setTimeout(() => {
                     const confetti = document.createElement('div');
@@ -674,28 +523,16 @@
                     confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
                     confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
                     document.body.appendChild(confetti);
-                    
                     setTimeout(() => confetti.remove(), 3000);
                 }, i * 50);
             }
         }
-        
-        // Run confetti on page load
         window.addEventListener('load', createConfetti);
         
-        // Track conversion for analytics
         if (typeof gtag === 'function') {
-            gtag('event', 'conversion', {
-                'event_category': 'Form',
-                'event_label': 'Booking Form Submission',
-                'value': 1
-            });
+            gtag('event', 'conversion', { 'event_category': 'Form', 'event_label': 'Booking Form Submission', 'value': 1 });
         }
-        
-        // Track with Facebook Pixel if available
-        if (typeof fbq === 'function') {
-            fbq('track', 'Lead');
-        }
+        if (typeof fbq === 'function') { fbq('track', 'Lead'); }
     </script>
 </body>
 </html>
